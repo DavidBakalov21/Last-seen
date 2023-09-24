@@ -81,5 +81,8 @@ class TestLastSeen(unittest.TestCase):
     def test_GetJason(self):
         result = main.fetch_json("https://sef.podkolzin.consulting/api/users/lastSeen?offset=0")
         self.assertEqual(result["data"][0]["nickname"], "Doug93")
-    # Using unittest's assertion method
+    def test_GetJason2(self):
+        result = main.fetch_json("https://sef.podkolzin.consulting/api/users/lastSeen?offset=20")
+        self.assertEqual(result["data"][0]["nickname"], "Karl94")
+
 
