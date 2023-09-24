@@ -77,5 +77,9 @@ class TestLastSeen(unittest.TestCase):
              'lastName': 'Rogahn', 'registrationDate': '2023-06-04T03:53:45.4490942+00:00',
              'lastSeenDate': '2023-09-24T15:22:42.9695297+00:00', 'isOnline': True})
         self.assertEqual(result, True)
+
+    def test_GetJason(self):
+        result = main.fetch_json("https://sef.podkolzin.consulting/api/users/lastSeen?offset=0")
+        self.assertEqual(result["data"][0]["nickname"], "Doug93")
     # Using unittest's assertion method
 

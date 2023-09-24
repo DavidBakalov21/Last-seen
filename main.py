@@ -1,5 +1,7 @@
 import requests
 from datetime import datetime, timezone
+
+
 def fetch_json(url):
     response = requests.get(url)
     response.raise_for_status()
@@ -92,7 +94,7 @@ while True:
 
 FormatedList={}
 for i in UserList:
-    print(FormatData(i))
+    #print(FormatData(i))
     FormatedList[i['nickname']]=FormatData(i)
 
 #print(FormatedList)
