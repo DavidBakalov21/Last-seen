@@ -1,5 +1,5 @@
 import requests
-
+from datetime import datetime, timezone
 def fetch_json(url):
     response = requests.get(url)
     response.raise_for_status()
@@ -21,7 +21,19 @@ while True:
         break
     offset+=len(data["data"])
     starter+=1
-    print(data)
+ #   print(data)
 
+FormatedList={}
+for i in UserList:
+    #if i['lastSeenDate']!=None:
+    if i['isOnline']==False:
+        LSeen = datetime.fromisoformat(i['lastSeenDate'])
+        currentTime = datetime.now().astimezone(timezone.utc)
+        Differenc=currentTime-LSeen
+        FormatedList[i['nickname']]=Differenc
+    else:
+        FormatedList[i['nickname']] = i['isOnline']
+
+print(FormatedList)
 
 
