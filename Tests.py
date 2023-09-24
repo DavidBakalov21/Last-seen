@@ -85,4 +85,8 @@ class TestLastSeen(unittest.TestCase):
         result = main.fetch_json("https://sef.podkolzin.consulting/api/users/lastSeen?offset=20")
         self.assertEqual(result["data"][0]["nickname"], "Karl94")
 
+    def test_OffsetLoop(self):
+        result = main.OffsetLoop()
+        self.assertEqual(result[0]["nickname"], "Doug93")
+
 

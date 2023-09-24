@@ -76,22 +76,26 @@ def ConvertToReadable(info, user, language):
         else:
             return "Користувач " + user + " онлайн"  # Ok
 language=input("1-English, 2-Ukrainian ")
-UserList=[]
-offset=0
-starter=0
-while True:
-    url = "https://sef.podkolzin.consulting/api/users/lastSeen?offset="+str(offset)
-    data = fetch_json(url)
-    if (starter==0 and  len(data["data"])>0) or  len(data["data"])>0 :
-        UserList.extend(data["data"])
-    else:
-        print("Failed to fetch data.")
-        break
-    offset+=len(data["data"])
-    starter+=1
- #   print(data)
 
 
+
+def OffsetLoop():
+    UserList = []
+    offset = 0
+    starter = 0
+    while True:
+        url = "https://sef.podkolzin.consulting/api/users/lastSeen?offset=" + str(offset)
+        data = fetch_json(url)
+        if (starter == 0 and len(data["data"]) > 0) or len(data["data"]) > 0:
+            UserList.extend(data["data"])
+        else:
+           # print("Failed to fetch data.")
+            break
+        offset += len(data["data"])
+        starter += 1
+    return UserList
+    
+UserList=OffsetLoop()
 FormatedList={}
 for i in UserList:
     #print(FormatData(i))
@@ -99,6 +103,7 @@ for i in UserList:
 
 #print(FormatedList)
 
-
+#print(len(FormatedList))
 for i in FormatedList:
+
     print(ConvertToReadable(FormatedList[i], i, language))
