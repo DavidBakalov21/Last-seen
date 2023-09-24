@@ -6,6 +6,19 @@ def fetch_json(url):
     json_data = response.json()
     return json_data
 
+
+
+def FormatData(data):
+    if data['isOnline']==False:
+        LSeen = datetime.fromisoformat(data['lastSeenDate'])
+        currentTime = datetime.now().astimezone(timezone.utc)
+        Differenc=currentTime-LSeen
+
+        return Differenc
+    else:
+        return data['isOnline']
+
+
 def ConvertToReadable(info, user, language):
     if info!=True:
         if info.days<1 and info.seconds<30:
@@ -76,16 +89,11 @@ while True:
     starter+=1
  #   print(data)
 
+
 FormatedList={}
 for i in UserList:
-    #if i['lastSeenDate']!=None:
-    if i['isOnline']==False:
-        LSeen = datetime.fromisoformat(i['lastSeenDate'])
-        currentTime = datetime.now().astimezone(timezone.utc)
-        Differenc=currentTime-LSeen
-        FormatedList[i['nickname']]=Differenc
-    else:
-        FormatedList[i['nickname']] = i['isOnline']
+    print(FormatData(i))
+    FormatedList[i['nickname']]=FormatData(i)
 
 #print(FormatedList)
 
