@@ -5,6 +5,7 @@ import ConvertToReadable
 import OffsetLoop
 import fetch_json
 import Translate
+from unittest.mock import patch, Mock
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #Naming strategy: MethodName_StateUnderTest_ExpectedBehavior
@@ -76,17 +77,28 @@ class TestLastSeen(unittest.TestCase):
              'lastSeenDate': '2023-09-24T15:22:42.9695297+00:00', 'isOnline': True})
         self.assertEqual(result, True)
 
-    def test_fetch_json_Offest0_Doug93(self):
+    @patch('requests.get')
+    def test_fetch_json_Offest0_Doug93(self, MockGet):
+        mock_response = Mock()
+        mock_response.json.return_value = {"data": [{"nickname": "Doug93"}]}
+        MockGet.return_value = mock_response
         result = fetch_json.fetch_json("https://sef.podkolzin.consulting/api/users/lastSeen?offset=0")
         self.assertEqual(result["data"][0]["nickname"], "Doug93")
 
-    def test_fetch_json_Offest20_Karl94(self):
+    @patch('requests.get')
+    def test_fetch_json_Offest20_Karl94(self, MockGet):
+        mock_response = Mock()
+        mock_response.json.return_value = {"data": [{"nickname": "Karl94"}]}
+        MockGet.return_value = mock_response
         result = fetch_json.fetch_json("https://sef.podkolzin.consulting/api/users/lastSeen?offset=20")
         self.assertEqual(result["data"][0]["nickname"], "Karl94")
 
-    def test_OffsetLoop_DefaultState_Doug93(self):
+    def test_OffsetLoop_FirstNickname_Doug93(self):
         result = OffsetLoop.OffsetLoop()
         self.assertEqual(result[0]["nickname"], "Doug93")
+    def test_OffsetLoop_SecondNickName_Nathaniel6(self):
+        result = OffsetLoop.OffsetLoop()
+        self.assertEqual(result[1]["nickname"], "Nathaniel6")
 
     def test_Translate_1_EnglishString(self):
         result = Translate.Translate("1")
