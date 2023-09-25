@@ -1,54 +1,27 @@
+import Translate
+
 def ConvertToReadable(info, user, language):
+    TranslateArray=Translate.Translate(language)
     if info!=True:
         if info.days<1 and info.seconds<30:
-            if language=="1":
-                return "User " + user + " was last seen at " + str(info)+" (just now)"
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (тільки що)"
-
+            return TranslateArray[0] + user + TranslateArray[1] + str(info)+TranslateArray[2]
         elif info.days<1 and info.seconds < 60 and info.seconds>1:
-            if language == "1":
-                return "User " + user + " was last seen at " + str(info) + " (less than a minute ago)" #Ok
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (менше хвилини тому)"
-
+            return TranslateArray[0] + user + TranslateArray[1] + str(info) + TranslateArray[3] #Ok
         elif info.days<1 and info.seconds < 3540 and info.seconds>60:
-            if language == "1":
-                return "User " + user + " was last seen at " + str(info) + " (couple of minutes ago)" #Ok
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (декілька хвилин тому)"  # Ok
-
+            return TranslateArray[0] + user + TranslateArray[1] + str(info) + TranslateArray[4] #Ok
         elif info.days<1 and info.seconds < 7140 and info.seconds>3600:
-            if language == "1":
-                return "User " + user + " was last seen at " + str(info) + " (hour ago)" #Ok
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (годину тому)" # Ok
-
+            return TranslateArray[0] + user + TranslateArray[1] + str(info) + TranslateArray[5] #Ok
         elif info.seconds>7200 and info.days<1:
-            if language == "1":
-                return "User " + user + " was last seen at " + str(info) + " (today)" #Ok
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (сьогодні)" # Ok
-
+            return TranslateArray[0] + user + TranslateArray[1] + str(info) + TranslateArray[6] #Ok
         elif info.days==1:
-            if language == "1":
-                return "User " + user + " was last seen at " + str(info) + " (yesterday)" #Ok
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (вчора)" # Ok
-
+            return TranslateArray[0] + user + TranslateArray[1] + str(info) + TranslateArray[7] #Ok
         elif info.days>1 and info.days<7:
-            if language == "1":
-                return "User " + user + " was last seen at " + str(info) + " (this week)" #OK
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (цього тижня)" # Ok
-
+            return TranslateArray[0] + user + TranslateArray[1] + str(info) + TranslateArray[8] #OK
         else:
-            if language == "1":
-                return "User " + user + " was last seen at " + str(info) + " (Long ago)" #OK
-            else:
-                return "Користувач " + user + " в останнє був присутній " + str(info) + " (давно)" # Ok
+            return TranslateArray[0] + user + TranslateArray[1] + str(info) + TranslateArray[9] #OK
     else:
-        if language == "1":
-            return "User " + user + " is online" #Ok
-        else:
-            return "Користувач " + user + " онлайн"  # Ok
+        return TranslateArray[0] + user + TranslateArray[10] #Ok
+
+
+
+

@@ -4,6 +4,7 @@ import FormatData
 import ConvertToReadable
 import OffsetLoop
 import fetch_json
+import Translate
 class TestLastSeen(unittest.TestCase):
 
     def test_True(self):
@@ -89,5 +90,15 @@ class TestLastSeen(unittest.TestCase):
     def test_OffsetLoop(self):
         result = OffsetLoop.OffsetLoop()
         self.assertEqual(result[0]["nickname"], "Doug93")
+
+    def test_Translate(self):
+        result = Translate.Translate("1")
+        self.assertEqual(result, ["User ", " was last seen at ", " (just now)", " (less than a minute ago)", " (couple of minutes ago)",
+              " (hour ago)", " (today)", " (yesterday)", " (this week)", " (Long ago)", " is online"])
+
+        result2 = Translate.Translate("2")
+        self.assertEqual(result2, ["Користувач ", " в останнє був присутній ", " (тільки що)", " (менше хвилини тому)",
+              " (декілька хвилин тому)",
+              " (годину тому)", " (сьогодні)", " (вчора)", " (цього тижня)", " (давно)", " онлайн"])
 
 
