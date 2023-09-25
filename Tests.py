@@ -96,6 +96,7 @@ class TestLastSeen(unittest.TestCase):
     def test_OffsetLoop_FirstNickname_Doug93(self):
         result = OffsetLoop.OffsetLoop()
         self.assertEqual(result[0]["nickname"], "Doug93")
+        
     def test_OffsetLoop_SecondNickName_Nathaniel6(self):
         result = OffsetLoop.OffsetLoop()
         self.assertEqual(result[1]["nickname"], "Nathaniel6")
