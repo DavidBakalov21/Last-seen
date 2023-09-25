@@ -1,6 +1,8 @@
 import Translate
 
-def ConvertToReadable(info, user, language):
+def ConvertToReadable(info, language):
+    user=list(info.keys())[0]
+    info=list(info.values())[0]
     TranslateArray=Translate.Translate(language)
     if info!=True:
         if info.days<1 and info.seconds<30:

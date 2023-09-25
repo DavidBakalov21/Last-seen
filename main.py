@@ -8,4 +8,4 @@ for i in UserList:
 
     FormatedList[i['nickname']]=FormatData.FormatData(i)
 for i in FormatedList:
-    print(ConvertToReadable.ConvertToReadable(FormatedList[i], i, language))
+    print(ConvertToReadable.ConvertToReadable({i:FormatedList[i]}, language))
