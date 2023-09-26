@@ -1,0 +1,7 @@
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# Naming strategy: MethodName_StateUnderTest_ExpectedBehavior
+
+# Note:each test should start with prefix test_ or it won't work, please ignore this prefix
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!

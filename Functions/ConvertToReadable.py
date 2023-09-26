@@ -1,9 +1,9 @@
-import Translate
+from Functions.Translate import Translate
 
 def ConvertToReadable(info, language):
     user=list(info.keys())[0]
     info=list(info.values())[0]
-    TranslateArray=Translate.Translate(language)
+    TranslateArray= Translate(language)
     if info!=True:
         if info.days<1 and info.seconds<30:
             return TranslateArray[0] + user + TranslateArray[1] + str(info)+TranslateArray[2]
