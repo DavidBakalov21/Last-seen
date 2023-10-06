@@ -22,7 +22,10 @@ if WhatToDo=="2":
         date = input("Date:")
         print(PredictHistData.PredictData(dataset,date))
     elif choice=="4":
-        print(PredictForUser.PredictDataForUser(dataset))
+        date = input("Date:")
+        ID = input("Id:")
+        tolerance = int(input("tolerance:"))
+        print(PredictForUser.PredictDataForUser(dataset,date,ID,tolerance))
 elif WhatToDo=="1":
     language=input("1-English, 2-Ukrainian ")
     UserList= OffsetLoop.OffsetLoop()
