@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 def ReadDataWriteData(Data):
-    with open("C:/Users/Давід/PycharmProjects/LastSeen/output.csv", "a", newline='') as file:
+    with open("Functions/output.csv", "a", newline='') as file:
         writer = csv.writer(file)
         if Data['isOnline'] == True:
             username = Data['nickname']

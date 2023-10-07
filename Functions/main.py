@@ -32,7 +32,7 @@ elif WhatToDo=="1":
     FormatedList={}
 
     for i in UserList:
-        #FileWriter.ReadDataWriteData(i)
+        FileWriter.ReadDataWriteData(i)
         FormatedList[i['nickname']]= FormatData.FormatData(i)
 
     for i in FormatedList:
