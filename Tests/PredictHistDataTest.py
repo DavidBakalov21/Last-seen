@@ -5,7 +5,7 @@ import Functions.PredictHistData
 
 
 
-class TestGetData(unittest.TestCase):
+class TestPredictData(unittest.TestCase):
 
     def test__PredictData__03_11_2023_18_45__4(self):
         warnings.simplefilter(action='ignore', category=Warning)

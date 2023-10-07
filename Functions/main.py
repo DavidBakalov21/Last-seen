@@ -38,6 +38,3 @@ elif WhatToDo=="1":
     for i in FormatedList:
 
         print(ConvertToReadable.ConvertToReadable({i:FormatedList[i]}, language))
-
-
-

@@ -3,7 +3,7 @@ import warnings
 
 import Functions.PredictForUser
 
-class TestGetData(unittest.TestCase):
+class TestPredictUser(unittest.TestCase):
 
     def test__PredictUser__27_10_2023_18_45__True(self):
         warnings.simplefilter(action='ignore', category=Warning)
