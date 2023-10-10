@@ -8,10 +8,12 @@ import PredictHistData
 import PredictForUser
 import DateInput
 import inputId
-WhatToDo=input("1-Offset Data, 2-Analyzing Data")
+import DeleteUser
+import TotalTime
+WhatToDo=input("1-Offset Data, 2-Analyzing Data, 3-Delete and Prevent Data collection")
 
 if WhatToDo=="2":
-    choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser")
+    choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser, 5-Total time for user")
     dataset=input("InputDataSet:")
     if choice=="1":
         date=DateInput.DateInput()
@@ -28,6 +30,10 @@ if WhatToDo=="2":
         ID = inputId.IdInput()
         tolerance = int(input("tolerance:"))
         print(PredictForUser.PredictDataForUser(dataset,date,ID,tolerance))
+    elif choice=='5':
+        ID = inputId.IdInput()
+        print(TotalTime.TotalTime(dataset,ID))
+
 elif WhatToDo=="1":
     language=input("1-English, 2-Ukrainian ")
     UserList= OffsetLoop.OffsetLoop()
@@ -40,3 +46,8 @@ elif WhatToDo=="1":
     for i in FormatedList:
 
         print(ConvertToReadable.ConvertToReadable({i:FormatedList[i]}, language))
+elif WhatToDo=="3":
+    dataset = input("InputDataSet:")
+    ID = inputId.IdInput()
+    print(DeleteUser.DeleteData(dataset,ID))
+
