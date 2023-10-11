@@ -10,6 +10,7 @@ import DateInput
 import inputId
 import DeleteUser
 import TotalTime
+import DailyWeekly
 WhatToDo=input("1-Offset Data, 2-Analyzing Data, 3-Delete and Prevent Data collection")
 
 if WhatToDo=="2":
@@ -33,6 +34,10 @@ if WhatToDo=="2":
     elif choice=='5':
         ID = inputId.IdInput()
         print(TotalTime.TotalTime(dataset,ID))
+    elif choice=='6':
+        ID = inputId.IdInput()
+        print(DailyWeekly.DailyWeekly(dataset, ID))
+
 
 elif WhatToDo=="1":
     language=input("1-English, 2-Ukrainian ")

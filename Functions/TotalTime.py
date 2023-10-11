@@ -18,7 +18,7 @@ def TotalTime(file,ID):
     else:
         return "ID is wrong"
 
-#print(TotalTime('outputF1.csv', '2fba2529-c166-8574-2da2-eac544d82634'))
+#print(TotalTime('C:/Users/Давід/PycharmProjects/LastSeen/Tests/outputF1.csv', '2fba2529-c166-8574-2da2-eac544d82634'))
 #print(TotalTime('outputF1.csv', '2fba2529-c166-8574-2da2-eac544d8263Nfbdxc4'))
 
 

@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 
 def ReadDataWriteData(Data):
-    with open("Functions/outputF1.csv", "a", newline='') as file:
+    with open("Path", "a", newline='') as file:
         writer = csv.writer(file)
         #if Data['isOnline'] == True:
         username = Data['nickname']
