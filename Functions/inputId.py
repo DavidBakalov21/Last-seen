@@ -1,2 +1,2 @@
 def IdInput():
-    return input("Id:")
+    return input("Id:\n")

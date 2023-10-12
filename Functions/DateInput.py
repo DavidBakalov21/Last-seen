@@ -1,2 +1,2 @@
 def DateInput():
-    return input("Date:")
+    return input("Date:\n")
