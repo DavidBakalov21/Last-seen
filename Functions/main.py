@@ -1,7 +1,6 @@
 import FormatData
 import ConvertToReadable
 import OffsetLoop
-import FileWriter
 import GetHistoricalData
 import GetHDataForUser
 import PredictHistData
@@ -12,10 +11,12 @@ import DeleteUser
 import TotalTime
 import DailyWeekly
 import requests
+import MinMax
+import TotalTimeOnRange
 WhatToDo=input("1-Offset Data, 2-Analyzing Data, 3-Delete and Prevent Data collection\n")
 
 if WhatToDo=="2":
-    choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser, 5-Total time for user, 6-Daily Weekly\n")
+    choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser, 5-Total time for user, 6-Daily Weekly, 7-TotalOnRange, 8-Min, 9-Max\n")
     dataset=input("InputDataSet:\n")
     if choice=="1":
         date=DateInput.DateInput()
@@ -38,6 +39,18 @@ if WhatToDo=="2":
     elif choice=='6':
         ID = inputId.IdInput()
         print(DailyWeekly.DailyWeekly(dataset, ID))
+
+    elif choice=='7':
+        Startdate = DateInput.DateInput()
+        EndDate = DateInput.DateInput()
+        ID = inputId.IdInput()
+        print(TotalTimeOnRange.TotalTimeRange(dataset, ID,Startdate,EndDate))
+    elif choice=='8':
+        ID = inputId.IdInput()
+        print(MinMax.Min(dataset, ID))
+    elif choice=='9':
+        ID = inputId.IdInput()
+        print(MinMax.Max(dataset, ID))
 
 
 elif WhatToDo=="1":
