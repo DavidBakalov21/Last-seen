@@ -1,18 +1,15 @@
+import os
 import unittest
-
-import subprocess
+from unittest.mock import patch
+from Functions import main
 
 class E2E24(unittest.TestCase):
 
-    @staticmethod
-    def Run(command, inputData):
-        process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
-        stdout = process.communicate(input=inputData)
-        return stdout[0]
 
-    def test_e2e_24_True(self):
-        input = "2\n4\nUserPredictTest.csv\n27-10-2023 18:45\n8c417d9d-b13f-f070-bf07-1fd9c768126f\n0.74\n"
-        output = self.Run(["python", "../Functions/main.py"], input)
-        lines = output.split('\n')
-        #print(output)
-        self.assertEqual(lines[len(lines)-2], "{'willBeOnline': True, 'onlineChance': 0.75}")
+    DIR = os.path.dirname(os.path.abspath(__file__))
+    csv = os.path.join(DIR, 'UserPredictTest.csv')
+
+    @patch('builtins.input', side_effect=['2', '4', csv, '27-10-2023 18:45','8c417d9d-b13f-f070-bf07-1fd9c768126f',0.74])
+    def test_get_historical_data(self, mock_input):
+        result = main.main()
+        self.assertEqual(result, {'willBeOnline': True, 'onlineChance': 0.75})

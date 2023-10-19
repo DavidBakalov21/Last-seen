@@ -1,18 +1,14 @@
+import os
 import unittest
-
-import subprocess
+from unittest.mock import patch
+from Functions import main
 
 class E2E22(unittest.TestCase):
 
-    @staticmethod
-    def Run(command, inputData):
-        process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
-        stdout = process.communicate(input=inputData)
-        return stdout[0]
+    DIR = os.path.dirname(os.path.abspath(__file__))
+    csv = os.path.join(DIR, 'GetDataForUser.csv')
 
-    def test_e2e_22_BoolTime(self):
-        input = "2\n2\nGetDataForUser.csv\n04-10-2023 18:56\n8c417d9d-b13f-f070-bf07-1fd9c768126f\n"
-        output = self.Run(["python", "../Functions/main.py"], input)
-        lines = output.split('\n')
-        #print(output)
-        self.assertEqual(lines[len(lines)-2], "{'wasUserOnline': False, 'nearestOnlineTime': '04-10-2023 18:59'}")
+    @patch('builtins.input', side_effect=['2', '2', csv, '04-10-2023 18:56', '8c417d9d-b13f-f070-bf07-1fd9c768126f'])
+    def test_get_historical_data(self, mock_input):
+        result = main.main()
+        self.assertEqual(result, {'wasUserOnline': False, 'nearestOnlineTime': '04-10-2023 18:59'})

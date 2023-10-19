@@ -1,18 +1,15 @@
+import os
 import unittest
-
-import subprocess
-
+from unittest.mock import patch
+from Functions import main
 class E2E28(unittest.TestCase):
 
-    @staticmethod
-    def Run(command, inputData):
-        process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
-        stdout = process.communicate(input=inputData)
-        return stdout[0]
 
-    def test_e2e_28_Min(self):
-        input = "2\n8\noutputF1.csv\n2fba2529-c166-8574-2da2-eac544d82634\n"
-        output = self.Run(["python", "../Functions/main.py"], input)
-        lines = output.split('\n')
-        #print(output)
-        self.assertEqual(lines[len(lines)-2], "{'min time': 7200.0}")
+    DIR = os.path.dirname(os.path.abspath(__file__))
+    csv = os.path.join(DIR, 'outputF1.csv')
+
+    @patch('builtins.input',
+           side_effect=['2', '8', csv, '2fba2529-c166-8574-2da2-eac544d82634'])
+    def test_get_historical_data(self, mock_input):
+        result = main.main()
+        self.assertEqual(result, {'min time': 7200.0})
