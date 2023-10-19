@@ -15,4 +15,4 @@ class E2E24(unittest.TestCase):
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
         print(output)
-        self.assertEqual(lines[6], "{'willBeOnline': True, 'onlineChance': 0.75}")
+        self.assertEqual(lines[len(lines)-2], "{'willBeOnline': True, 'onlineChance': 0.75}")

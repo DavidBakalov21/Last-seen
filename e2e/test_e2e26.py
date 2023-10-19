@@ -15,4 +15,4 @@ class E2E26(unittest.TestCase):
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
         print(output)
-        self.assertEqual(lines[4], "{'weeklyAverage': 16200.0, 'dailyAverage': 6480.0}")
+        self.assertEqual(lines[len(lines)-2], "{'weeklyAverage': 16200.0, 'dailyAverage': 6480.0}")

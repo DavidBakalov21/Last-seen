@@ -15,4 +15,4 @@ class E2E28(unittest.TestCase):
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
         print(output)
-        self.assertEqual(lines[4], "{'min time': 7200.0}")
+        self.assertEqual(lines[len(lines)-2], "{'min time': 7200.0}")

@@ -15,4 +15,4 @@ class E2E22(unittest.TestCase):
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
         print(output)
-        self.assertEqual(lines[5], "{'wasUserOnline': False, 'nearestOnlineTime': '04-10-2023 18:59'}")
+        self.assertEqual(lines[len(lines)-2], "{'wasUserOnline': False, 'nearestOnlineTime': '04-10-2023 18:59'}")

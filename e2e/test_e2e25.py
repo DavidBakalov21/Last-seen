@@ -15,4 +15,4 @@ class E2E25(unittest.TestCase):
         output= self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
         print(output)
-        self.assertEqual(lines[4], "{'totalTime': 32400.0}")
+        self.assertEqual(lines[len(lines)-2], "{'totalTime': 32400.0}")

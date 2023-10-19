@@ -14,4 +14,4 @@ class E2E3(unittest.TestCase):
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
         print(output)
-        self.assertEqual(lines[3], "user wasn't present or id was incorect")
+        self.assertEqual(lines[len(lines)-2], "user wasn't present or id was incorect")
