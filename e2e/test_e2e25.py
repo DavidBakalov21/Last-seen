@@ -1,18 +1,15 @@
+import os
 import unittest
-
-import subprocess
+from unittest.mock import patch
+from Functions import main
 
 class E2E25(unittest.TestCase):
 
-    @staticmethod
-    def Run(command, inputData):
-        process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,text=True)
-        stdout = process.communicate(input=inputData)
-        return stdout[0]
+    DIR = os.path.dirname(os.path.abspath(__file__))
+    csv = os.path.join(DIR, 'outputF1.csv')
 
-    def test_e2e_25_32400(self):
-        input = "2\n5\noutputF1.csv\n2fba2529-c166-8574-2da2-eac544d82634\n"
-        output= self.Run(["python", "../Functions/main.py"], input)
-        lines = output.split('\n')
-        print(output)
-        self.assertEqual(lines[4], "{'totalTime': 32400.0}")
+    @patch('builtins.input',
+           side_effect=['2', '5', csv,'2fba2529-c166-8574-2da2-eac544d82634'])
+    def test_get_historical_data(self, mock_input):
+        result = main.main()
+        self.assertEqual(result, {'totalTime': 32400.0})
