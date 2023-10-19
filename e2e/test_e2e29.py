@@ -14,5 +14,5 @@ class E2E29(unittest.TestCase):
         input = "2\n9\noutputF1.csv\n2fba2529-c166-8574-2da2-eac544d82634\n"
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
-        print(output)
+        #print(output)
         self.assertEqual(lines[len(lines)-2], "{'max time': 25200.0}")

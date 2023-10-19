@@ -14,5 +14,5 @@ class E2E23(unittest.TestCase):
         input = "2\n3\nGetDataForUser.csv\n03-11-2023 18:45\n"
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
-        print(output)
+        #print(output)
         self.assertEqual(lines[len(lines)-2], "4")

@@ -14,5 +14,5 @@ class E2E27(unittest.TestCase):
         input = "2\n7\noutputRange.csv\n2023-10-10T17:25:41.988544+00:00\n2023-10-11T20:21:41.988544+00:00\n2fba2529-c166-8574-2da2-eac544d82634\n"
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
-        print(output)
+        #print(output)
         self.assertEqual(lines[len(lines)-2], "{'totalTime': 32400.0}")
