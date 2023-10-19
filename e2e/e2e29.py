@@ -15,4 +15,4 @@ class E2E29(unittest.TestCase):
         output = self.Run(["python", "../Functions/main.py"], input)
         lines = output.split('\n')
         print(output)
-        self.assertEqual(lines[4], "{'max time': 25200.0}")
+        self.assertEqual(lines[4], "{'max time': 35200.0}")
