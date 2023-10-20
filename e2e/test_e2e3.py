@@ -8,4 +8,4 @@ class E2E3(unittest.TestCase):
     @patch('builtins.input', side_effect=['3',csv, '8c417d9d-b13f-f070-bf07-1fd9sdscscc768126fvg'])
     def test_get_historical_data(self, mock_input):
         result = main.main()
-        self.assertEqual(result, "User wasn't present or id was incorect")
+        self.assertEqual(result, "user wasn't present or id was incorect")
