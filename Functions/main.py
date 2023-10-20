@@ -1,18 +1,18 @@
-from . import FormatData
-from . import ConvertToReadable
-from . import OffsetLoop
-from . import GetHistoricalData
-from . import GetHDataForUser
-from . import PredictHistData
-from . import PredictForUser
-from . import DateInput
-from . import inputId
-from . import DeleteUser
-from . import TotalTime
-from . import DailyWeekly
+from Functions import FormatData
+from Functions import ConvertToReadable
+from Functions import OffsetLoop
+from Functions import GetHistoricalData
+from Functions import GetHDataForUser
+from Functions import PredictHistData
+from Functions import PredictForUser
+from Functions import DateInput
+from Functions import inputId
+from Functions import DeleteUser
+from Functions import TotalTime
+from Functions import DailyWeekly
 import requests
-from . import MinMax
-from . import TotalTimeOnRange
+from Functions import MinMax
+from Functions import TotalTimeOnRange
 def main():
     WhatToDo=input("1-Offset Data, 2-Analyzing Data, 3-Delete and Prevent Data collection\n")
 
@@ -21,36 +21,45 @@ def main():
         dataset=input("InputDataSet:\n")
         if choice=="1":
             date=DateInput.DateInput()
+            print(GetHistoricalData.GetData(dataset, date))
             return GetHistoricalData.GetData(dataset, date)
         elif choice=="2":
             date=DateInput.DateInput()
             ID = inputId.IdInput()
+            print(GetHDataForUser.GetDataForUser(dataset,date,ID))
             return GetHDataForUser.GetDataForUser(dataset,date,ID)
         elif choice=="3":
             date=DateInput.DateInput()
+            print(PredictHistData.PredictData(dataset,date))
             return PredictHistData.PredictData(dataset,date)
         elif choice=="4":
             date=DateInput.DateInput()
             ID = inputId.IdInput()
             tolerance = float(input("tolerance:\n"))
+            print(PredictForUser.PredictDataForUser(dataset,date,ID,tolerance))
             return PredictForUser.PredictDataForUser(dataset,date,ID,tolerance)
         elif choice=='5':
             ID = inputId.IdInput()
+            print(TotalTime.TotalTime(dataset,ID))
             return TotalTime.TotalTime(dataset,ID)
         elif choice=='6':
             ID = inputId.IdInput()
+            print(DailyWeekly.DailyWeekly(dataset, ID))
             return DailyWeekly.DailyWeekly(dataset, ID)
 
         elif choice=='7':
             Startdate = DateInput.DateInput()
             EndDate = DateInput.DateInput()
             ID = inputId.IdInput()
+            print(TotalTimeOnRange.TotalTimeRange(dataset, ID,Startdate,EndDate))
             return TotalTimeOnRange.TotalTimeRange(dataset, ID,Startdate,EndDate)
         elif choice=='8':
             ID = inputId.IdInput()
+            print(MinMax.Min(dataset, ID))
             return MinMax.Min(dataset, ID)
         elif choice=='9':
             ID = inputId.IdInput()
+            print(MinMax.Max(dataset, ID))
             return MinMax.Max(dataset, ID)
 
 
@@ -64,7 +73,7 @@ def main():
             FormatedList[i['nickname']]= FormatData.FormatData(i)
         finalList=[]
         for i in FormatedList:
-
+            print(ConvertToReadable.ConvertToReadable({i:FormatedList[i]}, language))
             finalList.append(ConvertToReadable.ConvertToReadable({i:FormatedList[i]}, language))
 
         return finalList
@@ -72,8 +81,10 @@ def main():
     elif WhatToDo=="3":
         dataset = input("InputDataSet:\n")
         ID = inputId.IdInput()
+        print(DeleteUser.DeleteData(dataset,ID))
         return DeleteUser.DeleteData(dataset,ID)
 
 if __name__ == "__main__":
     main()
+
 
