@@ -9,4 +9,6 @@ class E2E3(unittest.TestCase):
     def test_get_historical_data(self, mock_input):
         result = main.main()
         #This is fixed test
+        # This is fixed test
+        # This is fixed test
         self.assertEqual(result, "user wasn't present or id was incorect")
