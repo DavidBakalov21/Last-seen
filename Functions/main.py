@@ -1,3 +1,5 @@
+import os
+
 from Functions import FormatData
 from Functions import ConvertToReadable
 from Functions import OffsetLoop
@@ -13,11 +15,13 @@ from Functions import DailyWeekly
 import requests
 from Functions import MinMax
 from Functions import TotalTimeOnRange
+from Functions import CreateSaveReport
+from Functions import Input
 def main():
     WhatToDo=input("1-Offset Data, 2-Analyzing Data, 3-Delete and Prevent Data collection\n")
 
     if WhatToDo=="2":
-        choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser, 5-Total time for user, 6-Daily Weekly, 7-TotalOnRange, 8-Min, 9-Max\n")
+        choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser, 5-Total time for user, 6-Daily Weekly, 7-TotalOnRange, 8-Min, 9-Max, 10-MakeReport, 11-SearchReport\n")
         dataset=input("InputDataSet:\n")
         if choice=="1":
             date=DateInput.DateInput()
@@ -61,6 +65,23 @@ def main():
             ID = inputId.IdInput()
             print(MinMax.Max(dataset, ID))
             return MinMax.Max(dataset, ID)
+        elif choice=='10':
+            metrics=Input.INput("metrics")
+            Users=Input.INput("users")
+            res=CreateSaveReport.CreateRep(metrics,Users,dataset)
+            print(res)
+            DIR = os.path.dirname(os.path.abspath(__file__))
+            file = os.path.join(DIR, 'DataBase')
+            CreateSaveReport.Save(res,file)
+            return res
+        elif choice=='11':
+            DIR = os.path.dirname(os.path.abspath(__file__))
+            file = os.path.join(DIR, 'DataBase')
+            name=Input.INput('Input report name')
+            res=CreateSaveReport.SearchReport(name,file)
+            print(res)
+            return res
+
 
 
     elif WhatToDo=="1":
