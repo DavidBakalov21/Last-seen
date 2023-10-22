@@ -17,11 +17,13 @@ from Functions import MinMax
 from Functions import TotalTimeOnRange
 from Functions import CreateSaveReport
 from Functions import Input
+from GlobalDataReport import ReadReportAndWriteData
+from GlobalDataReport import CalculateAv
 def main():
     WhatToDo=input("1-Offset Data, 2-Analyzing Data, 3-Delete and Prevent Data collection\n")
 
     if WhatToDo=="2":
-        choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser, 5-Total time for user, 6-Daily Weekly, 7-TotalOnRange, 8-Min, 9-Max, 10-MakeReport, 11-SearchReport\n")
+        choice=input("1-GetHistoricalData, 2-GetDataForCertainUser, 3-PredictHIstoricalData, 4-PredictDataForuser, 5-Total time for user, 6-Daily Weekly, 7-TotalOnRange, 8-Min, 9-Max, 10-MakeReport, 11-SearchReport, 12-TotalReport\n")
         dataset=input("InputDataSet:\n")
         if choice=="1":
             date=DateInput.DateInput()
@@ -79,6 +81,11 @@ def main():
             file = os.path.join(DIR, 'DataBase')
             name=Input.INput('Input report name')
             res=CreateSaveReport.SearchReport(name,file)
+            print(res)
+            return res
+        elif choice=='12':
+            startData=ReadReportAndWriteData(dataset)
+            res=CalculateAv(startData)
             print(res)
             return res
 
