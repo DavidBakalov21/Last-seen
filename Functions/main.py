@@ -17,8 +17,7 @@ from Functions import MinMax
 from Functions import TotalTimeOnRange
 from Functions import CreateSaveReport
 from Functions import Input
-from GlobalDataReport import ReadReportAndWriteData
-from GlobalDataReport import CalculateAv
+from Functions import GlobalDataReport
 def main():
     WhatToDo=input("1-Offset Data, 2-Analyzing Data, 3-Delete and Prevent Data collection\n")
 
@@ -84,8 +83,8 @@ def main():
             print(res)
             return res
         elif choice=='12':
-            startData=ReadReportAndWriteData(dataset)
-            res=CalculateAv(startData)
+            startData=GlobalDataReport.ReadReportAndWriteData(dataset)
+            res=GlobalDataReport.CalculateAv(startData)
             print(res)
             return res
 
